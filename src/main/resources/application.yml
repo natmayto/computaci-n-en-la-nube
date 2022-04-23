@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: app-courses
+  profiles:
+    active: prod
+server:
+  servlet:
+    context-path: /todo_courses/v1
+  port: 9050
