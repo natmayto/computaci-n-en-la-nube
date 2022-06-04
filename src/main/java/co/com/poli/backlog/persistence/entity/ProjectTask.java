@@ -7,6 +7,7 @@ import lombok.Setter;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -23,14 +24,12 @@ public class ProjectTask {
     private Long id;
 
 
-    //@NotEmpty(message = "El nombre no debe ser vacio")
+    @NotEmpty(message = "El nombre no debe ser vacio")
     @Column(name = "name")
     private String name;
 
-
     @Column(name = "summary")
     private String summary;
-
 
     @Column(name = "acceptanceCriterial")
     private String acceptanceCriterial;

@@ -3,8 +3,10 @@ package co.com.poli.backlog.controller;
 import co.com.poli.backlog.persistence.entity.Backlog;
 import co.com.poli.backlog.service.BacklogService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +22,10 @@ public class BacklogController {
     }
 
     @PostMapping
-    public Backlog save(@RequestBody Backlog backlog) {
+    public Backlog save(@Valid @RequestBody Backlog backlog, BindingResult result) {
+        if(result.hasErrors()){
+            return new Backlog();
+        }
         return backlogService.save(backlog);
     }
 }
