@@ -1,4 +1,4 @@
-package co.com.poli.courses;
+package co.com.poli.backlog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
