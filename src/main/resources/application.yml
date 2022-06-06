@@ -2,7 +2,7 @@ spring:
   application:
     name: app-backlog
   profiles:
-    active: dev
+    active: prod
 server:
   servlet:
     context-path: /todo_backlog/v1
