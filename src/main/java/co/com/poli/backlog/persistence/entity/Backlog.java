@@ -2,8 +2,7 @@ package co.com.poli.backlog.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -12,6 +11,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "backlogs")
 public class Backlog {
@@ -25,7 +27,7 @@ public class Backlog {
     @Column(name = "projectidentifier")
     private String projectidentifier;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
     private Project project;

@@ -2,11 +2,13 @@ package co.com.poli.backlog.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import jdk.jshell.Snippet;
+import lombok.*;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "projecttasks")
 public class ProjectTask {
@@ -28,19 +33,24 @@ public class ProjectTask {
     @Column(name = "name")
     private String name;
 
+    @NotEmpty(message = "El nombre no debe ser vacio")
     @Column(name = "summary")
     private String summary;
 
+    @NotEmpty(message = "El nombre no debe ser vacio")
     @Column(name = "acceptanceCriterial")
     private String acceptanceCriterial;
 
     @Column(name = "status")
-    private String status;
+    private Status status;
 
+    @Min(1)
+    @Max(5)
     @Column(name = "priority")
     private int priority;
 
-
+    @Min(1)
+    @Max(8)
     @Column(name = "hours")
     private double hours;
 

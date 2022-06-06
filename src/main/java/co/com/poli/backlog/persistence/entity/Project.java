@@ -2,8 +2,8 @@ package co.com.poli.backlog.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +13,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "projects")
 public class Project {
@@ -41,7 +44,7 @@ public class Project {
     private LocalDateTime endDate;
 
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToOne(mappedBy = "project", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Backlog backlog;
 
