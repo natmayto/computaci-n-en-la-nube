@@ -1,12 +1,14 @@
 package co.com.poli.backlog.controller;
 
-
+import co.com.poli.backlog.persistence.entity.Project;
 import co.com.poli.backlog.helpers.ErrorMessage;
 import co.com.poli.backlog.helpers.Response;
 import co.com.poli.backlog.helpers.ResponseBuild;
 import co.com.poli.backlog.persistence.entity.Backlog;
 import co.com.poli.backlog.persistence.entity.ProjectTask;
+import co.com.poli.backlog.persistence.entity.Status;
 import co.com.poli.backlog.service.BacklogService;
+import co.com.poli.backlog.service.ProjectService;
 import co.com.poli.backlog.service.ProjectTaskService;
 import co.com.poli.backlog.service.dto.ProjectInDTO;
 import co.com.poli.backlog.service.dto.ProjectTaskInDTO;
@@ -40,9 +42,9 @@ public class ProjectTaskController {
 
 
     @PostMapping
-    public Response createTask(@Valid  @RequestBody ProjectTaskInDTO projectTaskInDTO, BindingResult result){
+    public Response createTask(@Valid @RequestBody ProjectTaskInDTO projectTaskInDTO, BindingResult result) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return builder.failed(formatMessage(result));
         }
         projectTaskService.createProjectTask(projectTaskInDTO);
@@ -80,5 +82,17 @@ public class ProjectTaskController {
         return builder.success(projectTaskService.findById(id));
     }
 
+    @PatchMapping
+    public Response remove(@PathVariable("id") Long id) {
+        return builder.success(projectTaskService.remove(id));
+
+    }
+
+    public Response find(@PathVariable("Status") Long Status) {
+        return builder.success(projectTaskService.find());
+
+
+    }
 
 }
+

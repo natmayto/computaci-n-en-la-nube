@@ -2,6 +2,7 @@ package co.com.poli.backlog.service;
 
 
 import co.com.poli.backlog.mapper.ProjectTaskDtoToProjectTask;
+import co.com.poli.backlog.persistence.entity.Project;
 import co.com.poli.backlog.persistence.entity.ProjectTask;
 import co.com.poli.backlog.persistence.repository.ProjectTaskRepository;
 import co.com.poli.backlog.service.dto.ProjectTaskInDTO;
@@ -43,6 +44,15 @@ public class ProjectTaskServiceImpl implements ProjectTaskService{
         return projectTaskRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public ProjectTask remove(Long id) {
+        return null;
+    }
+
+    @Override
+    public ProjectTask find() {
+        return null;
+    }
 
 
 }

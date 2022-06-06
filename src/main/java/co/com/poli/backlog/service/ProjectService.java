@@ -14,5 +14,4 @@ public interface ProjectService {
     List<Project> findAll();
 
     Project save(Project project);
-
 }

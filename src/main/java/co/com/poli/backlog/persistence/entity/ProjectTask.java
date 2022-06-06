@@ -1,9 +1,8 @@
 package co.com.poli.backlog.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jdk.jshell.Snippet;
 import lombok.*;
+import org.apache.commons.validator.routines.DateValidator;
 
 
 import javax.persistence.*;
@@ -11,6 +10,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -21,8 +21,10 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "projecttasks")
+
 public class ProjectTask {
 
+    private static final DateValidator VALIDATOR = new DateValidator();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false,nullable = false,unique = true)
@@ -32,6 +34,7 @@ public class ProjectTask {
     @NotEmpty(message = "El nombre no debe ser vacio")
     @Column(name = "name")
     private String name;
+
 
     @NotEmpty(message = "El nombre no debe ser vacio")
     @Column(name = "summary")
@@ -63,7 +66,6 @@ public class ProjectTask {
     @Column(name = "projectIdentifier")
     private String projectIdentifier;
 
-
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "backlog_id")
@@ -81,4 +83,9 @@ public class ProjectTask {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    public static DateValidator getInstance(){
+        return VALIDATOR;
+    }
+
 }

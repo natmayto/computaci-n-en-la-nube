@@ -3,7 +3,6 @@ package co.com.poli.backlog.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
